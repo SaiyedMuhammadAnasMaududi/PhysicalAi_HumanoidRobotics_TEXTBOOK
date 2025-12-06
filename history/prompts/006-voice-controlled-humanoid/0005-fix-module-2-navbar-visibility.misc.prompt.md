@@ -1,45 +1,51 @@
 ---
-id: {{ID}}
-title: {{TITLE}}
-stage: {{STAGE}}
-date: {{DATE_ISO}}
-surface: {{SURFACE}}
-model: {{MODEL}}
-feature: {{FEATURE}}
-branch: {{BRANCH}}
-user: {{USER}}
-command: {{COMMAND}}
-labels: [{{LABELS}}]
+id: 0005
+title: Fix Module 2 Navbar Visibility
+stage: misc
+date: 2025-12-06
+surface: agent
+model: claude-sonnet-4-5-20250929
+feature: 006-voice-controlled-humanoid
+branch: main
+user: developer
+command: /sp.implement
+labels: ["bugfix", "navbar", "module-2", "docusaurus"]
 links:
-  spec: {{LINKS_SPEC}}
-  ticket: {{LINKS_TICKET}}
-  adr: {{LINKS_ADR}}
-  pr: {{LINKS_PR}}
+  spec: null
+  ticket: null
+  adr: null
+  pr: null
 files:
-{{FILES_YAML}}
+  - docusaurus.config.ts
 tests:
-{{TESTS_YAML}}
+  - npm run build (successful)
 ---
 
 ## Prompt
 
-{{PROMPT_TEXT}}
+i have done it but still only the module is visible
 
 ## Response snapshot
 
-{{RESPONSE_TEXT}}
+The issue was that Module 2 was configured in `sidebars.ts` but not added to the navbar in `docusaurus.config.ts`. The navbar is the top navigation menu that users click to access different sections.
+
+Fixed by adding Module 2 to two places in `docusaurus.config.ts`:
+1. Navbar items (line 58-63) - Added "Module 2: Simulation" navigation link
+2. Footer links (line 81-84) - Added Module 2 footer link
+
+Build verified successfully with both server and client compilation passing.
 
 ## Outcome
 
-- ✅ Impact: {{OUTCOME_IMPACT}}
-- 🧪 Tests: {{TESTS_SUMMARY}}
-- 📁 Files: {{FILES_SUMMARY}}
-- 🔁 Next prompts: {{NEXT_PROMPTS}}
-- 🧠 Reflection: {{REFLECTION_NOTE}}
+- ✅ Impact: Module 2 now fully visible and accessible in the website navigation
+- 🧪 Tests: Build test passed (Server: 2.42m, Client: 3.70m)
+- 📁 Files: Modified docusaurus.config.ts to add navbar and footer configuration for Module 2
+- 🔁 Next prompts: Commit and push both sidebars.ts and docusaurus.config.ts to deploy
+- 🧠 Reflection: Previous implementation only updated the sidebar definition but missed the navbar configuration, which is required for top-level navigation in Docusaurus. The navbar controls which sidebars are accessible from the main menu.
 
 ## Evaluation notes (flywheel)
 
-- Failure modes observed: {{FAILURE_MODES}}
-- Graders run and results (PASS/FAIL): {{GRADER_RESULTS}}
-- Prompt variant (if applicable): {{PROMPT_VARIANT_ID}}
-- Next experiment (smallest change to try): {{NEXT_EXPERIMENT}}
+- Failure modes observed: Incomplete configuration - sidebar defined but not exposed in navbar
+- Graders run and results (PASS/FAIL): Build test PASS
+- Prompt variant (if applicable): N/A
+- Next experiment (smallest change to try): Verify navbar behavior on live site after deployment
