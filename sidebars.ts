@@ -33,12 +33,12 @@ const sidebars: SidebarsConfig = {
   ],
 
   module3Sidebar: [
-    'module-03-perception/01-introduction',
-    'module-03-perception/02-computer-vision',
-    'module-03-perception/03-speech-recognition',
-    'module-03-perception/04-sensor-fusion',
-    'module-03-perception/05-ros2-perception-integration',
-    'module-03-perception/06-mini-project-object-identification',
+    'module-03-perception/introduction',
+    'module-03-perception/computer-vision',
+    'module-03-perception/speech-recognition',
+    'module-03-perception/sensor-fusion',
+    'module-03-perception/ros2-perception-integration',
+    'module-03-perception/mini-project-object-identification',
   ],
 
   // Placeholder sidebars for other modules (content pending)

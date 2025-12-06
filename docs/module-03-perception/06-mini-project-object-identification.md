@@ -1,7 +1,17 @@
 ---
-title: Mini-Project: See and Identify
+title: "Mini-Project: See and Identify"
 description: A hands-on mini-project to build a real-time object identification system for a humanoid robot using integrated computer vision and ROS 2. Combines object detection, pose estimation, and perception fusion.
-keywords: [Mini-Project, Object Identification, Real-time Robotics, Computer Vision, ROS 2, Perception Fusion, Humanoid Robotics, YOLO, MediaPipe, `cv_bridge`]
+keywords:
+  - Mini-Project
+  - Object Identification
+  - Real-time Robotics
+  - Computer Vision
+  - ROS 2
+  - Perception Fusion
+  - Humanoid Robotics
+  - YOLO
+  - MediaPipe
+  - cv_bridge
 sidebar_position: 6
 learning_objectives:
   - Apply computer vision techniques (object detection, pose estimation) in a practical context.

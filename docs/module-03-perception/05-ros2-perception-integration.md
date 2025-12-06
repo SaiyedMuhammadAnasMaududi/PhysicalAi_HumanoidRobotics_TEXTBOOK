@@ -1,7 +1,15 @@
 ---
 title: ROS 2 Integration of Perception Streams
 description: Learn how to integrate computer vision, speech recognition, and sensor fusion modules into the ROS 2 framework for real-time robotic perception. Covers custom message types, `cv_bridge`, and creating ROS 2 nodes for a unified perception pipeline.
-keywords: [ROS 2, Perception, Integration, `cv_bridge`, Custom Messages, ROS 2 Nodes, Robotic Perception, Humanoid Robotics]
+keywords:
+  - ROS 2
+  - Perception
+  - Integration
+  - cv_bridge
+  - Custom Messages
+  - ROS 2 Nodes
+  - Robotic Perception
+  - Humanoid Robotics
 sidebar_position: 5
 learning_objectives:
   - Understand the principles of integrating perception modules within ROS 2.
