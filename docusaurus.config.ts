@@ -90,7 +90,7 @@ const config: Config = {
             },
             {
               label: 'Module 3: Perception',
-              to: '/docs/module-03-perception/01-introduction',
+              to: '/docs/module-03-perception/introduction',
             },
           ],
         },
