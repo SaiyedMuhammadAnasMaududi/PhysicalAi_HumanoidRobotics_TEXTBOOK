@@ -22,8 +22,17 @@ const sidebars: SidebarsConfig = {
     'module-01-ros2/mini-project-ros2-communication',
   ],
 
+  module2Sidebar: [
+    'module-02-simulation/introduction',
+    'module-02-simulation/gazebo-installation',
+    'module-02-simulation/urdf-xacro-models',
+    'module-02-simulation/sensor-simulation',
+    'module-02-simulation/ros2-gazebo-bridge',
+    'module-02-simulation/unity-integration',
+    'module-02-simulation/mini-project-walking-simulation',
+  ],
+
   // Placeholder sidebars for other modules (content pending)
-  module2Sidebar: [],
   module3Sidebar: [],
   module4Sidebar: [],
   capstoneSidebar: [],
