@@ -56,6 +56,12 @@ const config: Config = {
           label: 'Module 1: ROS 2',
         },
         {
+          type: 'docSidebar',
+          sidebarId: 'module2Sidebar',
+          position: 'left',
+          label: 'Module 2: Simulation',
+        },
+        {
           href: 'https://github.com/SaiyedMuhammadAnasMaududi/PhysicalAi_HumanoidRobotics_TEXTBOOK',
           label: 'GitHub',
           position: 'right',
@@ -71,6 +77,10 @@ const config: Config = {
             {
               label: 'Module 1: ROS 2',
               to: '/docs/module-01-ros2/introduction',
+            },
+            {
+              label: 'Module 2: Simulation',
+              to: '/docs/module-02-simulation/introduction',
             },
           ],
         },
