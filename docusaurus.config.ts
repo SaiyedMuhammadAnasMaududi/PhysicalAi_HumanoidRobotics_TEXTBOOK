@@ -62,6 +62,12 @@ const config: Config = {
           label: 'Module 2: Simulation',
         },
         {
+          type: 'docSidebar',
+          sidebarId: 'module3Sidebar',
+          position: 'left',
+          label: 'Module 3: Perception',
+        },
+        {
           href: 'https://github.com/SaiyedMuhammadAnasMaududi/PhysicalAi_HumanoidRobotics_TEXTBOOK',
           label: 'GitHub',
           position: 'right',
@@ -81,6 +87,10 @@ const config: Config = {
             {
               label: 'Module 2: Simulation',
               to: '/docs/module-02-simulation/introduction',
+            },
+            {
+              label: 'Module 3: Perception',
+              to: '/docs/module-03-perception/01-introduction',
             },
           ],
         },
