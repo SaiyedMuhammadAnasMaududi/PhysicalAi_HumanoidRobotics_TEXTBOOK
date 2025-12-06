@@ -1,0 +1,7 @@
+# eslintignore for Physical AI & Humanoid Robotics Textbook
+
+node_modules/
+dist/
+build/
+coverage/
+*.min.js
