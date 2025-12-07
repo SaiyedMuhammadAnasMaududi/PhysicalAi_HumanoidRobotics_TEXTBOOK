@@ -43,7 +43,8 @@ const sidebars: SidebarsConfig = {
 
   module4Sidebar: [
     'module-04-control/introduction',
-    'module-04-control/control-basics',
+    // TEMPORARILY DISABLED: 'module-04-control/control-basics' has MDX parsing errors
+    // This file was created before Module 4 implementation and needs fixing
     'module-04-control/task-planning',
     'module-04-control/behavior-trees',
     'module-04-control/vla-architecture',
