@@ -5,19 +5,63 @@ description: Introduction to the Physical AI & Humanoid Robotics Textbook
 keywords: [physical ai, humanoid robotics, ros 2, simulation, perception, control]
 ---
 
-# Physical AI & Humanoid Robotics Textbook
+# Physical AI & Humanoid Robotics
 
-Welcome to the **Physical AI & Humanoid Robotics** educational textbook! This comprehensive resource will guide you through building autonomous voice-controlled humanoid robots from the ground up.
+<div className="hero-subtitle">
+  <p className="hero-tagline">
+    Master autonomous robotics by building a complete <strong>voice-controlled humanoid assistant</strong> from the ground up
+  </p>
+</div>
 
-## 🎯 What You'll Learn
+<div className="hero-actions" style={{marginTop: '2rem', marginBottom: '3rem'}}>
+  <a href="/docs/module-01-ros2/introduction" className="button button--primary button--lg">
+    Start Learning →
+  </a>
+  <a href="#what-youll-learn" className="button button--outline button--lg" style={{marginLeft: '1rem'}}>
+    View Curriculum
+  </a>
+</div>
 
-This textbook is organized into **four core modules** plus a **capstone project**:
+---
 
-1. **Module 1: Robotic Nervous System (ROS 2)** - Learn ROS 2 fundamentals, nodes, topics, services, URDF models, and Python integration
-2. **Module 2: Digital Twin (Gazebo & Unity)** - Master physics simulation, digital twin setup, and sensor simulation
-3. **Module 3: Perception** - Implement computer vision, speech recognition, and sensor fusion for environmental understanding
-4. **Module 4: Control, Planning & Natural Interaction** - Build task planning systems, behavior trees, and safety-aware execution
-5. **Capstone Project** - Integrate all modules to create a fully autonomous voice-controlled humanoid assistant
+## 🎯 What You'll Learn {#what-youll-learn}
+
+<div className="module-grid">
+  <div className="module-card">
+    <div className="module-icon">🤖</div>
+    <h3>Module 1: ROS 2 Fundamentals</h3>
+    <p>Build the robotic nervous system using ROS 2 nodes, topics, services, and URDF modeling</p>
+    <a href="/docs/module-01-ros2/introduction" className="module-link">Explore Module 1 →</a>
+  </div>
+
+  <div className="module-card">
+    <div className="module-icon">🎮</div>
+    <h3>Module 2: Simulation & Digital Twins</h3>
+    <p>Master Gazebo physics simulation and create safe virtual testing environments</p>
+    <a href="/docs/module-02-simulation/introduction" className="module-link">Explore Module 2 →</a>
+  </div>
+
+  <div className="module-card">
+    <div className="module-icon">👁️</div>
+    <h3>Module 3: Perception Systems</h3>
+    <p>Enable robots to see and hear using computer vision and speech recognition</p>
+    <a href="/docs/module-03-perception/introduction" className="module-link">Explore Module 3 →</a>
+  </div>
+
+  <div className="module-card">
+    <div className="module-icon">🧠</div>
+    <h3>Module 4: Planning & Control</h3>
+    <p>Teach robots to plan tasks and execute motions safely with behavior trees</p>
+    <a href="/docs/module-04-control/introduction" className="module-link">Explore Module 4 →</a>
+  </div>
+
+  <div className="module-card module-card--highlight">
+    <div className="module-icon">🏆</div>
+    <h3>Module 5: Capstone Project</h3>
+    <p>Integrate everything into a complete autonomous voice-controlled humanoid</p>
+    <a href="/docs/module-05-capstone/introduction" className="module-link">Start Capstone →</a>
+  </div>
+</div>
 
 ## 🚀 Learning Approach
 
