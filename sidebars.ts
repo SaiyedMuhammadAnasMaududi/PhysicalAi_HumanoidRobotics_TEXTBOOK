@@ -52,8 +52,12 @@ const sidebars: SidebarsConfig = {
     'module-04-control/mini-project-voice-controlled-action',
   ],
 
-  // Placeholder sidebar for capstone project (content pending)
-  capstoneSidebar: [],
+  module5Sidebar: [
+    'module-05-capstone/introduction',
+    'module-05-capstone/integration-strategy',
+    'module-05-capstone/workspace-setup',
+    'module-05-capstone/demo-deployment',
+  ],
 };
 
 export default sidebars;

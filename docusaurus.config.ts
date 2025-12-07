@@ -74,6 +74,12 @@ const config: Config = {
           label: 'Module 4: Control',
         },
         {
+          type: 'docSidebar',
+          sidebarId: 'module5Sidebar',
+          position: 'left',
+          label: 'Module 5: Capstone',
+        },
+        {
           href: 'https://github.com/SaiyedMuhammadAnasMaududi/PhysicalAi_HumanoidRobotics_TEXTBOOK',
           label: 'GitHub',
           position: 'right',
@@ -101,6 +107,10 @@ const config: Config = {
             {
               label: 'Module 4: Control',
               to: '/docs/module-04-control/introduction',
+            },
+            {
+              label: 'Module 5: Capstone',
+              to: '/docs/module-05-capstone/introduction',
             },
           ],
         },
