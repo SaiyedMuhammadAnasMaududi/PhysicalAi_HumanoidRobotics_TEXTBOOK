@@ -41,8 +41,17 @@ const sidebars: SidebarsConfig = {
     'module-03-perception/mini-project-object-identification',
   ],
 
-  // Placeholder sidebars for other modules (content pending)
-  module4Sidebar: [],
+  module4Sidebar: [
+    'module-04-control/introduction',
+    'module-04-control/control-basics',
+    'module-04-control/task-planning',
+    'module-04-control/behavior-trees',
+    'module-04-control/vla-architecture',
+    'module-04-control/safety-constraints',
+    'module-04-control/mini-project-voice-controlled-action',
+  ],
+
+  // Placeholder sidebar for capstone project (content pending)
   capstoneSidebar: [],
 };
 

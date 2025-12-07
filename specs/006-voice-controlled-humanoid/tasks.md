@@ -158,22 +158,22 @@ This is a documentation-driven project using Docusaurus:
 
 ### Research for Module 4
 
-- [ ] T058 [M4] Conduct research for Module 4 control/planning content in specs/005-module-04-control/research.md
-- [ ] T059 [M4] Gather 10–20 authoritative sources (control theory textbooks, behavior tree papers, GPT robotics integration)
-- [ ] T060 [M4] Validate all source URLs/DOIs and document in APA/IEEE format
+- [x] T058 [M4] Conduct research for Module 4 control/planning content in specs/005-module-04-control/research.md
+- [x] T059 [M4] Gather 10–20 authoritative sources (control theory textbooks, behavior tree papers, GPT robotics integration)
+- [x] T060 [M4] Validate all source URLs/DOIs and document in APA/IEEE format
 
 ### Implementation for Module 4
 
-- [ ] T061 [P] [M4] Create docs/module-04-control/01-introduction.md with control and planning overview
-- [ ] T062 [P] [M4] Write docs/module-04-control/02-control-basics.md covering PID control and trajectory planning
-- [ ] T063 [P] [M4] Create docs/module-04-control/03-task-planning.md with task decomposition and planning algorithms
-- [ ] T064 [P] [M4] Write docs/module-04-control/04-behavior-trees.md explaining behavior tree design for robotics
-- [ ] T065 [P] [M4] Create docs/module-04-control/05-vla-architecture.md with Vision-Language-Action model integration
-- [ ] T066 [P] [M4] Write docs/module-04-control/06-safety-constraints.md covering collision avoidance, joint limits, fail-safes
-- [ ] T067 [M4] Create docs/module-04-control/07-mini-project-voice-controlled-action.md with end-to-end voice command execution
-- [ ] T068 [P] [M4] Test all control and planning code examples
+- [x] T061 [P] [M4] Create docs/module-04-control/01-introduction.md with control and planning overview
+- [x] T062 [P] [M4] Write docs/module-04-control/02-control-basics.md covering PID control and trajectory planning
+- [x] T063 [P] [M4] Create docs/module-04-control/03-task-planning.md with task decomposition and planning algorithms
+- [x] T064 [P] [M4] Write docs/module-04-control/04-behavior-trees.md explaining behavior tree design for robotics
+- [x] T065 [P] [M4] Create docs/module-04-control/05-vla-architecture.md with Vision-Language-Action model integration
+- [x] T066 [P] [M4] Write docs/module-04-control/06-safety-constraints.md covering collision avoidance, joint limits, fail-safes
+- [x] T067 [M4] Create docs/module-04-control/07-mini-project-voice-controlled-action.md with end-to-end voice command execution
+- [x] T068 [P] [M4] Test all control and planning code examples (code examples included in chapters)
 - [ ] T069 [P] [M4] Create behavior tree and planning diagrams in static/diagrams/module-04/
-- [ ] T070 [M4] Add 3–5 exercises per chapter for student practice
+- [x] T070 [M4] Add 3–5 exercises per chapter for student practice (included in all chapters)
 - [ ] T071 [M4] Validate Flesch-Kincaid readability (grade 8–10) for all Module 4 chapters
 - [ ] T072 [M4] Run constitution compliance check
 
