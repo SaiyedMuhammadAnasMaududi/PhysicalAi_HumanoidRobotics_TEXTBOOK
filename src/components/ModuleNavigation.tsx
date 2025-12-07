@@ -24,11 +24,11 @@ const modulesData: Module[] = [
     color: '#0066cc',
     chapters: [
       { title: 'Introduction to ROS 2', path: '/docs/module-01-ros2/introduction' },
-      { title: 'Nodes and Topics', path: '/docs/module-01-ros2/nodes-topics' },
-      { title: 'Services and Actions', path: '/docs/module-01-ros2/services-actions' },
-      { title: 'URDF and Robot Modeling', path: '/docs/module-01-ros2/urdf-robot-modeling' },
-      { title: 'Parameters and Launch Files', path: '/docs/module-01-ros2/parameters-launch' },
-      { title: 'Mini Project: Basic Robot', path: '/docs/module-01-ros2/mini-project-basic-robot' },
+      { title: 'ROS 2 Installation & Setup', path: '/docs/module-01-ros2/ros2-installation-setup' },
+      { title: 'Nodes, Topics & Services', path: '/docs/module-01-ros2/nodes-topics-services' },
+      { title: 'Publishers & Subscribers', path: '/docs/module-01-ros2/publishers-subscribers' },
+      { title: 'Humanoid URDF Modeling', path: '/docs/module-01-ros2/humanoid-urdf' },
+      { title: 'Mini Project: ROS 2 Communication', path: '/docs/module-01-ros2/mini-project-ros2-communication' },
     ],
   },
   {
@@ -55,11 +55,11 @@ const modulesData: Module[] = [
     color: '#cc6600',
     chapters: [
       { title: 'Introduction to Perception', path: '/docs/module-03-perception/introduction' },
-      { title: 'Computer Vision Basics', path: '/docs/module-03-perception/computer-vision-basics' },
-      { title: 'Object Detection (YOLO)', path: '/docs/module-03-perception/object-detection' },
-      { title: 'Speech Recognition (Whisper)', path: '/docs/module-03-perception/speech-recognition' },
+      { title: 'Computer Vision', path: '/docs/module-03-perception/computer-vision' },
+      { title: 'Speech Recognition', path: '/docs/module-03-perception/speech-recognition' },
       { title: 'Sensor Fusion', path: '/docs/module-03-perception/sensor-fusion' },
-      { title: 'Mini Project: Voice Detection', path: '/docs/module-03-perception/mini-project-voice-detection' },
+      { title: 'ROS 2 Perception Integration', path: '/docs/module-03-perception/ros2-perception-integration' },
+      { title: 'Mini Project: Object Identification', path: '/docs/module-03-perception/mini-project-object-identification' },
     ],
   },
   {
@@ -70,11 +70,11 @@ const modulesData: Module[] = [
     color: '#9900cc',
     chapters: [
       { title: 'Introduction to Control', path: '/docs/module-04-control/introduction' },
-      { title: 'Motion Planning Basics', path: '/docs/module-04-control/motion-planning-basics' },
-      { title: 'Behavior Trees (BT.CPP)', path: '/docs/module-04-control/behavior-trees' },
       { title: 'Task Planning', path: '/docs/module-04-control/task-planning' },
-      { title: 'Trajectory Execution', path: '/docs/module-04-control/trajectory-execution' },
-      { title: 'Mini Project: Task Planner', path: '/docs/module-04-control/mini-project-task-planner' },
+      { title: 'Behavior Trees', path: '/docs/module-04-control/behavior-trees' },
+      { title: 'VLA Architecture', path: '/docs/module-04-control/vla-architecture' },
+      { title: 'Safety Constraints', path: '/docs/module-04-control/safety-constraints' },
+      { title: 'Mini Project: Voice-Controlled Action', path: '/docs/module-04-control/mini-project-voice-controlled-action' },
     ],
   },
   {
