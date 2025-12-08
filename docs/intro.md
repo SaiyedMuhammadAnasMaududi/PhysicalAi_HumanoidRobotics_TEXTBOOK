@@ -96,7 +96,7 @@ Our approach is built on three pillars:
     <div className="module-icon">🤖</div>
     <h3>Module 1: ROS 2 Fundamentals</h3>
     <p>Build the robotic nervous system using ROS 2 nodes, topics, services, and URDF modeling</p>
-    <a href="/docs/module-01-ros2/introduction" className="module-link">Explore Module 1 →</a>
+    <a href="/docs/module-01-ros2/01-introduction" className="module-link">Explore Module 1 →</a>
   </div>
 
   <div className="module-card">
