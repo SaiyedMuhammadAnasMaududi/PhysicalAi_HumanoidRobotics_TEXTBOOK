@@ -58,6 +58,11 @@ const config: Config = {
       },
       items: [
         {
+          to: '/docs/intro',
+          label: 'Home',
+          position: 'left',
+        },
+        {
           type: 'docSidebar',
           sidebarId: 'module1Sidebar',
           position: 'left',
