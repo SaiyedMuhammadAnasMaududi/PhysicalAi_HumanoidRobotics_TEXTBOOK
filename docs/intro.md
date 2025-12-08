@@ -172,7 +172,7 @@ By the end of this textbook, you'll have built a **voice-controlled humanoid rob
 
 ## 🌟 Getting Started
 
-Ready to begin? Head to [Explore the Book](module-01-ros2/introduction) to start your journey into Physical AI and Humanoid Robotics!
+Ready to begin? Head to [Module 1](module-01-ros2/introduction) to start your journey into Physical AI and Humanoid Robotics!
 
 ---
 
