@@ -56,7 +56,7 @@ By the end of this textbook, you'll have built a **voice-controlled humanoid rob
 
 Ready to begin? Click below to start your journey:
 
-[**Start with Module 1: ROS 2 Basics**](/PhysicalAi_HumanoidRobotics_TEXTBOOK/docs/intro)
+[**Explore The Book**](/PhysicalAi_HumanoidRobotics_TEXTBOOK/docs/intro)
 
 ---
 
