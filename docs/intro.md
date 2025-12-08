@@ -16,9 +16,9 @@ import ModuleNavigation from '@site/src/components/ModuleNavigation';
 </div>
 
 <div className="hero-actions" style={{marginTop: '2rem', marginBottom: '3rem'}}>
-  <a href="/docs/module-01-ros2/introduction" className="button button--primary button--lg">
+  <!-- <a href="/docs/module-01-ros2/introduction" className="button button--primary button--lg">
     Start Learning →
-  </a>
+  </a> -->
   <a href="#about-this-book" className="button button--outline button--lg" style={{marginLeft: '1rem'}}>
     About This Book
   </a>
@@ -91,7 +91,7 @@ Our approach is built on three pillars:
 
 ## 🎯 What You'll Learn {#what-youll-learn}
 
-<div className="module-grid">
+<!-- <div className="module-grid">
   <div className="module-card">
     <div className="module-icon">🤖</div>
     <h3>Module 1: ROS 2 Fundamentals</h3>
@@ -126,7 +126,7 @@ Our approach is built on three pillars:
     <p>Integrate everything into a complete autonomous voice-controlled humanoid</p>
     <a href="/docs/module-05-capstone/introduction" className="module-link">Start Capstone →</a>
   </div>
-</div>
+</div> -->
 
 ## 🚀 Learning Approach
 
