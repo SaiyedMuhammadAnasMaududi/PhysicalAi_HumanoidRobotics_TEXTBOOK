@@ -16,7 +16,7 @@ import ModuleNavigation from '@site/src/components/ModuleNavigation';
 </div>
 
 <div className="hero-actions" style={{marginTop: '2rem', marginBottom: '3rem'}}>
-  <a href="/docs/module-01-ros2/01-introduction" className="button button--primary button--lg">
+  <a href="/docs/module-01-ros2/introduction" className="button button--primary button--lg">
     Start Learning →
   </a>
   <a href="#about-this-book" className="button button--outline button--lg" style={{marginLeft: '1rem'}}>
@@ -96,35 +96,35 @@ Our approach is built on three pillars:
     <div className="module-icon">🤖</div>
     <h3>Module 1: ROS 2 Fundamentals</h3>
     <p>Build the robotic nervous system using ROS 2 nodes, topics, services, and URDF modeling</p>
-    <a href="/docs/module-01-ros2/01-introduction" className="module-link">Explore Module 1 →</a>
+    <a href="/docs/module-01-ros2/introduction" className="module-link">Explore Module 1 →</a>
   </div>
 
   <div className="module-card">
     <div className="module-icon">🎮</div>
     <h3>Module 2: Simulation & Digital Twins</h3>
     <p>Master Gazebo physics simulation and create safe virtual testing environments</p>
-    <a href="/docs/module-02-simulation/01-introduction" className="module-link">Explore Module 2 →</a>
+    <a href="/docs/module-02-simulation/introduction" className="module-link">Explore Module 2 →</a>
   </div>
 
   <div className="module-card">
     <div className="module-icon">👁️</div>
     <h3>Module 3: Perception Systems</h3>
     <p>Enable robots to see and hear using computer vision and speech recognition</p>
-    <a href="/docs/module-03-perception/01-introduction" className="module-link">Explore Module 3 →</a>
+    <a href="/docs/module-03-perception/introduction" className="module-link">Explore Module 3 →</a>
   </div>
 
   <div className="module-card">
     <div className="module-icon">🧠</div>
     <h3>Module 4: Planning & Control</h3>
     <p>Teach robots to plan tasks and execute motions safely with behavior trees</p>
-    <a href="/docs/module-04-control/01-introduction" className="module-link">Explore Module 4 →</a>
+    <a href="/docs/module-04-control/introduction" className="module-link">Explore Module 4 →</a>
   </div>
 
   <div className="module-card module-card--highlight">
     <div className="module-icon">🏆</div>
     <h3>Module 5: Capstone Project</h3>
     <p>Integrate everything into a complete autonomous voice-controlled humanoid</p>
-    <a href="/docs/module-05-capstone/01-introduction" className="module-link">Start Capstone →</a>
+    <a href="/docs/module-05-capstone/introduction" className="module-link">Start Capstone →</a>
   </div>
 </div>
 
@@ -172,7 +172,7 @@ By the end of this textbook, you'll have built a **voice-controlled humanoid rob
 
 ## 🌟 Getting Started
 
-Ready to begin? Head to [Module 1](/docs/module-01-ros2/introduction) to start your journey into Physical AI and Humanoid Robotics!
+Ready to begin? Head to [Module 1](module-01-ros2/introduction) to start your journey into Physical AI and Humanoid Robotics!
 
 ---
 
