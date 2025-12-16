@@ -1,192 +1,97 @@
-# RAG Chatbot Backend
+# Backend: Book Content Embedding Pipeline
 
-FastAPI backend for the Physical AI & Humanoid Robotics book RAG chatbot.
+This backend component processes markdown files from the `/docs` directory, generates semantic embeddings using Cohere, and stores them in a Qdrant vector database collection named 'physicalai' for the RAG chatbot system.
 
-## Quick Start
+## Features
 
-### 1. Install Dependencies
+- Scans and parses markdown files from the `/docs` directory
+- Generates semantic embeddings using Cohere embedding models
+- Stores embeddings in Qdrant vector database with metadata
+- Configurable via environment variables
+- Semantic and fixed-size chunking strategies
 
-```bash
-pip install -r requirements.txt
-```
+## Prerequisites
 
-### 2. Configure Environment
+- Python 3.11+
+- Cohere API key
+- Qdrant database (cloud or local instance)
 
-Copy the root `.env` file or ensure these variables are set:
+## Setup
 
-```bash
-QUADRANT_URL=https://your-cluster.qdrant.io
-QUADRANT_API_KEY=your_api_key
-POSTGRES_URL=postgresql://user:pass@host.neon.tech/db?sslmode=require
-GEMINI_API_KEY=your_gemini_key
-```
+1. Install dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-### 3. Initialize Database
+2. Create a `.env` file with your configuration:
+   ```bash
+   # Copy the template
+   cp .env.example .env
+   # Edit the file with your API keys and settings
+   ```
 
-**Windows:**
-```powershell
-cd backend
-python init_db.py
-```
+3. Place your markdown files in the `/docs` directory
 
-**Linux/Mac:**
-```bash
-cd backend
-python3 init_db.py
-```
+## Configuration
 
-This creates all necessary database tables in your Neon Postgres instance.
-
-### 4. Index Book Content
+Create a `.env` file with the following variables:
 
 ```bash
-cd backend
-python scripts/index_content.py
+# Cohere Configuration
+COHERE_API_KEY=your_cohere_api_key_here
+
+# Qdrant Configuration
+QDRANT_URL=https://your-cluster-url.europe-west3-0.gcp.cloud.qdrant.io
+QDRANT_API_KEY=your_qdrant_api_key_here
+QDRANT_HOST=localhost      # Use for local Qdrant instance
+QDRANT_PORT=6333          # Use for local Qdrant instance
+
+# Pipeline Configuration
+DOCS_PATH=./docs           # Path to markdown files (default: ./docs)
+CHUNK_SIZE=512             # Size of text chunks in tokens (default: 512)
+CHUNK_OVERLAP=50           # Overlap between chunks in tokens (default: 50)
+CHUNKING_STRATEGY=semantic # Options: semantic, fixed (default: semantic)
+EMBEDDING_MODEL=embed-multilingual-v3.0 # Cohere model (default: embed-multilingual-v3.0)
+BATCH_SIZE=10              # Number of chunks to process in each API call (default: 10)
+QDRANT_COLLECTION=physicalai # Qdrant collection name (default: physicalai)
 ```
 
-This indexes your book content into Qdrant vector database.
+## Usage
 
-### 5. Run Development Server
+Run the embedding pipeline:
 
 ```bash
-cd backend
-uvicorn src.main:app --reload
+# From the backend directory
+python src/main.py
 ```
 
-Visit http://localhost:8000/docs for API documentation.
+Or using the run script:
 
-## Project Structure
-
-```
-backend/
-├── src/
-│   ├── __init__.py          # Package initialization
-│   ├── main.py              # FastAPI application
-│   ├── config.py            # Configuration management
-│   ├── database.py          # Database connection pool
-│   ├── db_init.py           # Database initialization module
-│   ├── vector_db.py         # Qdrant client
-│   ├── llm_service.py       # LLM integration
-│   ├── api/                 # API endpoints
-│   ├── models/              # SQLAlchemy models
-│   ├── services/            # Business logic
-│   ├── middleware/          # Middleware (CORS, rate limiting, etc.)
-│   └── schemas/             # Pydantic schemas
-├── scripts/
-│   └── index_content.py     # Content indexing script
-├── tests/                   # Test suite
-├── init_db.py              # Database init entry point
-├── init_db.bat             # Windows batch file
-├── requirements.txt         # Python dependencies
-├── Dockerfile              # Docker configuration
-├── railway.json            # Railway deployment config
-├── render.yaml             # Render deployment config
-└── vercel.json             # Vercel deployment config
-```
-
-## API Endpoints
-
-### Health Check
 ```bash
-GET /health
-GET /api/health
+python scripts/run_embedding_pipeline.py
 ```
 
-### Query Chatbot
+## Pipeline Phases
+
+1. **Content Ingestion**: Scans `/docs` directory and parses markdown files
+2. **Content Chunking**: Splits documents into semantically coherent chunks
+3. **Embedding Generation**: Creates embeddings using Cohere API
+4. **Vector Storage**: Stores embeddings in Qdrant collection 'physicalai'
+
+## Testing
+
+Run the unit tests:
+
 ```bash
-POST /api/chatbot/query
-Content-Type: application/json
-
-{
-  "query": "What is Physical AI?",
-  "selected_text": "optional highlighted text",
-  "session_id": "optional session id"
-}
+pytest tests/unit/
 ```
 
-### Session Management
-```bash
-POST /api/chatbot/session
-Content-Type: application/json
+## Architecture
 
-{
-  "user_id": "optional user identifier"
-}
-```
+The entire pipeline is implemented in a single `main.py` file with the following components:
 
-## Development
-
-### Run Tests
-```bash
-pytest
-```
-
-### Check API Documentation
-Visit http://localhost:8000/docs for interactive Swagger UI
-
-### View Logs
-Logs are written to stdout and include request/response details.
-
-## Deployment
-
-See the main `DEPLOYMENT_QUICKSTART.md` for deployment instructions.
-
-### Quick Deploy to Railway
-```bash
-cd ..
-./scripts/deploy-backend.sh railway
-```
-
-### Quick Deploy to Render
-Upload `render.yaml` via Render dashboard.
-
-### Quick Deploy to Vercel
-```bash
-cd ..
-./scripts/deploy-backend.sh vercel
-```
-
-## Troubleshooting
-
-### Module Not Found Error
-Make sure you're in the `backend` directory and use:
-```bash
-python init_db.py
-```
-Instead of:
-```bash
-python -m src.db_init
-```
-
-### Database Connection Error
-1. Check `POSTGRES_URL` in `.env` file
-2. Verify Neon database is accessible
-3. Ensure connection string includes `?sslmode=require`
-
-### Qdrant Connection Error
-1. Verify `QUADRANT_URL` and `QUADRANT_API_KEY`
-2. Check Qdrant Cloud dashboard
-3. Ensure cluster is active
-
-### Import Errors
-Install all dependencies:
-```bash
-pip install -r requirements.txt
-```
-
-## Environment Variables
-
-| Variable | Description | Required |
-|----------|-------------|----------|
-| `QUADRANT_URL` | Qdrant cluster URL | Yes |
-| `QUADRANT_API_KEY` | Qdrant API key | Yes |
-| `POSTGRES_URL` | Neon database connection string | Yes |
-| `GEMINI_API_KEY` | Google Gemini API key | Yes |
-| `MODEL_PROVIDER` | LLM provider (gemini/litellm) | No (default: gemini) |
-| `BACKEND_CORS_ORIGINS` | Allowed CORS origins (JSON array) | No |
-| `DEBUG` | Enable debug mode | No (default: false) |
-| `MAX_CONCURRENT_USERS` | Max concurrent users | No (default: 10) |
-
-## License
-
-See main project LICENSE file.
+- `DocumentIngestor`: Handles file scanning and markdown parsing
+- `Chunker`: Manages content chunking strategies
+- `EmbeddingGenerator`: Interfaces with Cohere API
+- `VectorStorage`: Manages Qdrant database operations
+- `EmbeddingPipeline`: Orchestrates the entire process
