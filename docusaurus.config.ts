@@ -21,6 +21,16 @@ const config: Config = {
     locales: ['en'],
   },
 
+  customFields: {
+    // Expose environment variables to client-side code
+    backendUrl: process.env.BACKEND_URL || 'http://localhost:8000',
+    streamingEndpoint: process.env.STREAMING_ENDPOINT || '/api/chat/stream',
+    timeoutMs: process.env.TIMEOUT_MS || '30000',
+    retryAttempts: process.env.RETRY_ATTEMPTS || '3',
+    retryDelayMs: process.env.RETRY_DELAY_MS || '1000',
+    messageLimit: process.env.MESSAGE_LIMIT || '100',
+  },
+
   presets: [
     [
       'classic',
@@ -60,6 +70,11 @@ const config: Config = {
         {
           to: '/docs/intro',
           label: 'Home',
+          position: 'left',
+        },
+        {
+          to: '/docs/chat-interface',
+          label: 'Chat',
           position: 'left',
         },
         {
@@ -124,6 +139,10 @@ const config: Config = {
             {
               label: 'Module 5: Capstone Project',
               to: '/docs/module-05-capstone/introduction',
+            },
+            {
+              label: 'Interactive Chat',
+              to: '/docs/chat-interface',
             },
           ],
         },
