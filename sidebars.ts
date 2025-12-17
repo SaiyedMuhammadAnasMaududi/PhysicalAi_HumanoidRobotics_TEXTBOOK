@@ -11,7 +11,7 @@ import type {SidebarsConfig} from '@docusaurus/plugin-content-docs';
  Create as many sidebars as you want.
  */
 const sidebars: SidebarsConfig = {
-  tutorialSidebar: ['intro'],
+  tutorialSidebar: ['intro', 'chat-interface/index'],
 
   module1Sidebar: [
     'module-01-ros2/introduction',

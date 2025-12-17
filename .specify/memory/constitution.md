@@ -1,119 +1,109 @@
 <!--
 Sync Impact Report:
-- Version change: 1.0.0 → 1.0.0
-- Modified principles: None
-- Added sections: None
-- Removed sections: None
+- Version change: 1.0.0 → 2.0.0
+- Modified principles: All principles updated to reflect RAG chatbot project requirements (Academic Rigor → Accuracy, Modularity → Traceability, Practical Application → Reliability, etc.)
+- Added sections: Chatbot and RAG Requirements section, RAG Pipeline and Infrastructure section, Accuracy Check and RAG Pipeline Check validation gates
+- Removed sections: Original chapter requirements (replaced with chatbot-specific requirements)
 - Templates requiring updates:
-  ✅ .specify/templates/plan-template.md (aligned)
-  ✅ .specify/templates/spec-template.md (aligned)
-  ✅ .specify/templates/tasks-template.md (aligned)
-- Follow-up TODOs: None
+  ⚠ .specify/templates/plan-template.md (needs alignment with new principles)
+  ⚠ .specify/templates/spec-template.md (needs alignment with new requirements)
+  ⚠ .specify/templates/tasks-template.md (needs alignment with new validation gates)
+- Follow-up TODOs: Update templates to align with new constitution
 -->
 
 # Physical AI & Humanoid Robotics Textbook Constitution
 
 ## Core Principles
 
-### I. Academic Rigor and Source Verification
+### I. Accuracy and Source Verification
 
 **Non-Negotiable Rules:**
-- All technical definitions MUST come from authoritative sources (research papers, textbooks, IEEE standards, academic lectures)
-- Minimum 40% of sources MUST be academically credible (research papers, IEEE/ACM publications, peer-reviewed textbooks)
-- Remaining sources MAY include technical blogs, official documentation, or standards bodies
-- Zero tolerance for hallucinations or invented references
-- All external facts MUST have traceable URLs or paper references
-- Citation style MUST follow IEEE format unless otherwise specified
+- Responses MUST reflect the content of the book; no hallucinations allowed
+- All responses MUST be verified against selected text from the book content
+- Zero tolerance for fabricated or invented references
+- Information MUST be traceable to specific chapters or sections of the book
+- Citation format MUST follow APA style for content taken from the book
+- When content is unavailable, chatbot MUST explicitly indicate this condition
 
-**Rationale:** Academic credibility is foundational for educational materials. Students and instructors must be able to verify and trace every technical claim to established sources.
+**Rationale:** Accuracy is foundational for educational materials. Students and instructors must be able to verify and trust that all responses are grounded in the book's content.
 
 ### II. Clarity and Accessibility
 
 **Non-Negotiable Rules:**
-- Reading level MUST target Flesch-Kincaid grade 8–10 (accessible but accurate)
-- All jargon MUST be introduced and defined before use
+- Chatbot answers MUST be concise, clear, and understandable for learners of Physical AI and Humanoid Robotics
+- All jargon MUST be explained in context appropriate for the target audience
 - Simple, accessible language MUST be used while maintaining technical correctness
-- Each concept MUST be explained before being referenced in subsequent content
-- Standardized callouts MUST be used for notes, tips, and warnings
+- Responses MUST be tailored to the comprehension level of robotics learners
+- Standardized callouts SHOULD be used for notes, tips, and warnings in responses
 
-**Rationale:** The textbook serves beginners and students entering Physical AI and robotics. Clarity ensures comprehension without sacrificing accuracy.
+**Rationale:** The chatbot serves beginners and students entering Physical AI and robotics. Clarity ensures comprehension without sacrificing accuracy.
 
-### III. Modularity and Pedagogical Flow
-
-**Non-Negotiable Rules:**
-- Each chapter MUST be standalone and independently understandable
-- Chapters MUST maintain consistency with the overall curriculum
-- Concepts MUST progress from beginner → intermediate → advanced
-- Each chapter MUST include:
-  - Learning objectives
-  - Core content (1,000–2,500 words)
-  - Code examples (where applicable)
-  - Diagrams (where applicable)
-  - Exercises
-  - Summary
-
-**Rationale:** Modular design allows flexible teaching approaches while maintaining pedagogical coherence. Students can study chapters in sequence or reference specific topics independently.
-
-### IV. Practical Application and Code Quality
+### III. Traceability and Reproducibility
 
 **Non-Negotiable Rules:**
-- All code examples MUST run as-is without modification
-- Supported languages: JavaScript/TypeScript, Python, MCP/Agent workflows
-- Code MUST include inline comments explaining key concepts
-- Examples MUST demonstrate real-world robotics concepts and agent development patterns
-- Code MUST be tested before inclusion in the textbook
+- All information MUST be traceable to the book's content with specific chapter/section references
+- Retrieval pipeline MUST use embeddings stored in Qdrant (cloud free-tier) and Neon Serverless Postgres
+- Chatbot setup and embeddings pipeline MUST be reproducible using provided code and instructions
+- Source documents for embeddings MUST be versioned and tracked
+- Retrieval results MUST include provenance information linking to original content
 
-**Rationale:** Hands-on practice is essential for learning Physical AI and robotics. Non-functional examples undermine trust and learning outcomes.
+**Rationale:** Educational integrity requires that students can verify information and reproduce the system. Traceability ensures accountability and trust.
 
-### V. Structural Consistency and Format Standards
-
-**Non-Negotiable Rules:**
-- Format MUST be Markdown optimized for Docusaurus
-- Frontmatter MUST be included in every chapter file
-- Heading hierarchy MUST follow:
-  - H1 (#) for chapter titles
-  - H2 (##) for major sections
-  - H3 (###) for subsections
-- Glossary terms MUST be consistent across all chapters
-- Diagrams MUST be generated using Spec-Kit Plus templates or compatible tools
-- All assets (images, diagrams) MUST be referenced with relative paths
-
-**Rationale:** Consistency ensures professional presentation and reliable build processes. Docusaurus compatibility is required for GitHub Pages deployment.
-
-### VI. Build and Deployment Integrity
+### IV. Reliability and Performance
 
 **Non-Negotiable Rules:**
-- The book MUST compile successfully using `npm run build` without errors
-- Build MUST be deployable to GitHub Pages via GitHub Actions
-- All chapters MUST pass Spec-Kit validation (accuracy, clarity, sourcing, structure)
-- Breaking changes to build or deployment MUST be documented and justified
-- All dependencies MUST be versioned in package.json
+- System MUST handle concurrent users (≥ 10 simultaneous users)
+- Average response latency MUST be ≤ 3 seconds for retrieval + generation pipeline
+- System MUST provide fallback/error handling for all failure modes
+- Chatbot MUST maintain consistent availability during operation
+- Performance metrics MUST be monitored and logged for optimization
 
-**Rationale:** A textbook that doesn't build or deploy is unusable. Build integrity ensures the book remains accessible and maintainable.
+**Rationale:** A reliable system is essential for educational use. Students need consistent, fast responses to maintain engagement and learning flow.
+
+### V. Extensibility and Technology Standards
+
+**Non-Negotiable Rules:**
+- Tech stack MUST use OpenAI Agents SDK / ChatKit SDK, FastAPI backend, Neon Postgres, Qdrant Cloud free-tier
+- Model configuration MUST support Gemini or Litellm for reasoning and response generation
+- Architecture SHOULD support upgrading models or adding new knowledge sources without breaking existing functionality
+- Agent configuration MUST be clearly defined with prompt templates and reasoning steps
+- Data scope MUST be limited to book content or user-selected text for responses
+
+**Rationale:** The system needs to evolve with advancing technology while maintaining compatibility. Clear technology standards ensure maintainability and scalability.
+
+### VI. Security and Ethical Standards
+
+**Non-Negotiable Rules:**
+- User input MUST be sanitized to prevent injection attacks
+- No sensitive user data MAY be logged or stored
+- Chatbot interaction MUST follow ethical AI guidelines (no generation of harmful or biased content)
+- Deployment MUST be embedded within the Docusaurus book deployed on GitHub Pages
+- All interactions SHOULD respect user privacy and data protection principles
+
+**Rationale:** Security and ethical considerations are paramount in educational technology. Users must trust that their interactions are safe and appropriate.
 
 ## Content Standards
 
 ### Topical Coverage
 
-The textbook MUST cover:
+The textbook and chatbot knowledge base MUST cover:
 - Physical AI fundamentals
 - Humanoid robotics principles
+- RAG (Retrieval-Augmented Generation) systems
 - Intelligent agents (OpenAI Agents, MCP Tools, multi-agent systems)
 - System architecture and design patterns
 - Hands-on coding examples with explanations
 - Real-world applications and case studies
 
-### Chapter Requirements
+### Chatbot and RAG Requirements
 
-Each chapter MUST include:
-1. **Frontmatter**: title, description, learning objectives, keywords
-2. **Introduction**: context and motivation (100–200 words)
-3. **Core Content**: concepts, explanations, examples (800–2,100 words)
-4. **Code Examples**: at least one working example (where applicable)
-5. **Diagrams**: visual explanations of complex concepts (where applicable)
-6. **Exercises**: 3–5 exercises for student practice
-7. **Summary**: key takeaways (100–200 words)
-8. **References**: IEEE-formatted citations for all sources
+The integrated RAG chatbot MUST:
+1. **Accurately respond** to questions based on book content with ≥ 95% accuracy on test queries
+2. **Index all book content sections** in the retrieval pipeline
+3. **Provide precise and contextually relevant** answers to questions based on highlighted text
+4. **Include provenance information** with each response citing specific book sections
+5. **Support user-selected text queries** for focused, contextual responses
+6. **Maintain auditable reasoning steps** for debugging and educational purposes
 
 ### Scope and Scale
 
@@ -121,32 +111,47 @@ Each chapter MUST include:
 - Each chapter: 1,000–2,500 words (excluding code and diagrams)
 - Chapter count MAY expand based on curriculum needs
 - Cross-references between chapters MUST use consistent linking format
+- Embedded chatbot interface MUST be seamlessly integrated within Docusaurus documentation
 
 ## Technical Requirements
 
 ### Development Workflow
 
-All chapter creation and revision MUST use:
+All chapter creation, RAG pipeline development, and chatbot implementation MUST use:
 - Claude Code for drafting, refinement, and verification
 - Spec-Kit Plus workflows for planning and validation
 - Git for version control with meaningful commit messages
 - Feature branches for new chapters or major revisions
+- Reproducible deployment instructions included in the book repository
+
+### RAG Pipeline and Infrastructure
+
+The retrieval-augmented generation system MUST:
+- Use Qdrant (cloud free-tier) for vector embeddings storage
+- Use Neon Serverless Postgres for metadata and structured data
+- Support both Gemini and Litellm models for reasoning and response generation
+- Include fully reproducible setup and deployment instructions
+- Handle concurrent users (≥ 10 simultaneous users) with appropriate performance
+- Implement proper error handling and fallback mechanisms
 
 ### Validation Gates
 
-Before marking any chapter complete, it MUST pass:
-1. **Source Check**: All claims verified with cited sources
-2. **Clarity Check**: Reading level verified (Flesch-Kincaid 8–10)
-3. **Code Check**: All examples tested and functional
-4. **Build Check**: Chapter integrates without build errors
-5. **Consistency Check**: Formatting, terminology, and structure aligned with constitution
+Before marking any chapter or chatbot feature complete, it MUST pass:
+1. **Source Check**: All claims verified with cited sources from book content
+2. **Accuracy Check**: Chatbot responses grounded in book content for ≥ 95% of test queries
+3. **RAG Pipeline Check**: All book content sections correctly indexed in retrieval system
+4. **Performance Check**: Response latency ≤ 3 seconds for retrieval + generation pipeline
+5. **Build Check**: Chapter and chatbot integrate without build errors
+6. **Security Check**: User input sanitized and no sensitive data logged
+7. **Consistency Check**: Formatting, terminology, and structure aligned with constitution
 
 ### Quality Assurance
 
 - Peer/mentor review MUST indicate correctness and pedagogical clarity
 - Factual accuracy MUST be verified against authoritative sources
-- Code examples MUST be executed in target environments before publication
-- Diagrams MUST accurately represent described concepts
+- Code examples and RAG pipeline MUST be executed in target environments before publication
+- Chatbot responses MUST be auditable with internal reasoning steps logged for debugging
+- System MUST pass concurrency and stress tests (≥ 10 simultaneous users)
 
 ## Governance
 
@@ -181,4 +186,4 @@ Before marking any chapter complete, it MUST pass:
 - Prompt History Records live in `history/prompts/`
 - Architecture Decision Records live in `history/adr/`
 
-**Version**: 1.0.0 | **Ratified**: 2025-12-05 | **Last Amended**: 2025-12-05
+**Version**: 2.0.0 | **Ratified**: 2025-12-05 | **Last Amended**: 2025-12-16
