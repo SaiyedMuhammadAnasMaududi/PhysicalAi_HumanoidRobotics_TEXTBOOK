@@ -84,8 +84,8 @@ export function ChatContainer({
   function updateDOMFromState() {
     // Update message list
     const existingMessageList = messagesContainer.querySelector('.message-list');
-    if (existingMessageList) {
-      existingMessageList.remove();
+    if (existingMessageList && existingMessageList.parentNode) {
+      existingMessageList.parentNode.removeChild(existingMessageList);
     }
 
     const newMessageList = createMessageList(state.messages);

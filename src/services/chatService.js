@@ -2,34 +2,15 @@
  * Backend communication logic for the chat interface
  */
 
-import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
-
-/**
- * Get configuration from Docusaurus customFields
- * @returns {Object} Configuration object
- */
-function getDocusaurusConfig() {
-  try {
-    // This will be available in React components
-    // For non-React contexts, fall back to env variables
-    if (typeof window !== 'undefined' && window.docusaurus) {
-      return window.docusaurus.customFields || {};
-    }
-  } catch (e) {
-    console.warn('Could not access Docusaurus config:', e);
-  }
-  return {};
-}
-
-// Default configuration
-const docConfig = getDocusaurusConfig();
+// Default configuration - production values hardcoded
+// React components can override these using updateConfig()
 const DEFAULT_CONFIG = {
-  BACKEND_URL: docConfig.backendUrl || process.env.BACKEND_URL || 'http://localhost:8000',
-  STREAMING_ENDPOINT: docConfig.streamingEndpoint || process.env.STREAMING_ENDPOINT || '/api/chat/stream',
-  MESSAGE_LIMIT: parseInt(docConfig.messageLimit || process.env.MESSAGE_LIMIT || '100'),
-  TIMEOUT_MS: parseInt(docConfig.timeoutMs || process.env.TIMEOUT_MS || '30000'),
-  RETRY_ATTEMPTS: parseInt(docConfig.retryAttempts || process.env.RETRY_ATTEMPTS || '3'),
-  RETRY_DELAY_MS: parseInt(docConfig.retryDelayMs || process.env.RETRY_DELAY_MS || '1000')
+  BACKEND_URL: 'https://syedmuhammadanasmaududi-rag-chabot.hf.space',
+  STREAMING_ENDPOINT: '/api/chat/stream',
+  MESSAGE_LIMIT: 100,
+  TIMEOUT_MS: 30000,
+  RETRY_ATTEMPTS: 3,
+  RETRY_DELAY_MS: 1000
 };
 
 // Store current configuration

@@ -12,47 +12,70 @@ import './ChatStyles.css'; // Import the styles
  */
 function ChatInterfaceInternal({ backendUrl, streamingEndpoint, messageLimit, onStateChange, className = '', style = {} }) {
   const chatContainerRef = useRef(null);
+  const chatInstanceRef = useRef(null);
   const [chatLoaded, setChatLoaded] = useState(false);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
+    let isMounted = true;
+
     // Dynamic import to avoid SSR issues
     import('./ChatContainer.jsx')
       .then(({ ChatContainer }) => {
-        // Create the chat interface when component mounts
-        if (chatContainerRef.current) {
-          // Clear any existing content
-          chatContainerRef.current.innerHTML = '';
-
-          // Create the chat container with the specified configuration
-          const chatComponent = ChatContainer({
-            backendUrl,
-            streamingEndpoint,
-            messageLimit,
-            onStateChange
-          });
-
-          // Append the chat component to the container
-          chatContainerRef.current.appendChild(chatComponent);
-
-          // Store the component instance for cleanup
-          chatContainerRef.current.chatComponent = chatComponent;
-          setChatLoaded(true);
+        if (!isMounted || !chatContainerRef.current) {
+          return;
         }
 
-        // Cleanup function
-        return () => {
-          if (chatContainerRef.current && chatContainerRef.current.chatComponent) {
-            // Call the cleanup function if available
-            if (chatContainerRef.current.chatComponent.cleanup) {
-              chatContainerRef.current.chatComponent.cleanup();
-            }
-            chatContainerRef.current.innerHTML = '';
-          }
-        };
+        // Clear any existing content safely
+        while (chatContainerRef.current.firstChild) {
+          chatContainerRef.current.removeChild(chatContainerRef.current.firstChild);
+        }
+
+        // Create the chat container with the specified configuration
+        const chatComponent = ChatContainer({
+          backendUrl,
+          streamingEndpoint,
+          messageLimit,
+          onStateChange
+        });
+
+        // Append the chat component to the container
+        chatContainerRef.current.appendChild(chatComponent);
+        chatInstanceRef.current = chatComponent;
+
+        if (isMounted) {
+          setChatLoaded(true);
+        }
       })
       .catch(error => {
         console.error('Error loading chat container:', error);
+        if (isMounted) {
+          setError(error.message);
+        }
       });
+
+    // Cleanup function
+    return () => {
+      isMounted = false;
+
+      // Clean up chat instance
+      if (chatInstanceRef.current && chatInstanceRef.current.cleanup) {
+        try {
+          chatInstanceRef.current.cleanup();
+        } catch (e) {
+          console.error('Error cleaning up chat:', e);
+        }
+      }
+
+      // Clear the container safely
+      if (chatContainerRef.current) {
+        while (chatContainerRef.current.firstChild) {
+          chatContainerRef.current.removeChild(chatContainerRef.current.firstChild);
+        }
+      }
+
+      chatInstanceRef.current = null;
+    };
   }, [backendUrl, streamingEndpoint, messageLimit, onStateChange]);
 
   const combinedClassName = `chat-interface-container ${className}`.trim();
@@ -61,9 +84,17 @@ function ChatInterfaceInternal({ backendUrl, streamingEndpoint, messageLimit, on
     ...style
   };
 
+  if (error) {
+    return (
+      <div ref={chatContainerRef} className={combinedClassName} style={combinedStyle}>
+        <div className="chat-error">Failed to load chat: {error}</div>
+      </div>
+    );
+  }
+
   return (
     <div ref={chatContainerRef} className={combinedClassName} style={combinedStyle}>
-      {!chatLoaded && <div>Loading chat interface...</div>}
+      {!chatLoaded && <div className="chat-loading">Loading chat interface...</div>}
     </div>
   );
 }
@@ -81,7 +112,7 @@ function ChatInterfaceInternal({ backendUrl, streamingEndpoint, messageLimit, on
  */
 const ChatInterfaceReact = (props) => {
   return (
-    <BrowserOnly>
+    <BrowserOnly fallback={<div>Loading...</div>}>
       {() => <ChatInterfaceInternal {...props} />}
     </BrowserOnly>
   );
