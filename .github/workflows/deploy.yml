@@ -25,8 +25,22 @@ jobs:
 
       - name: Install dependencies
         run: npm ci
+
       - name: Build website
         run: npm run build
+        env:
+          BACKEND_URL: https://syedmuhammadanasmaududi-rag-chabot.hf.space
+          STREAMING_ENDPOINT: /api/chat/stream
+          TIMEOUT_MS: 30000
+          RETRY_ATTEMPTS: 3
+          RETRY_DELAY_MS: 1000
+          MESSAGE_LIMIT: 100
+
+      - name: Verify backend health (optional)
+        continue-on-error: true
+        run: |
+          echo "Checking backend health at https://syedmuhammadanasmaududi-rag-chabot.hf.space"
+          curl -f https://syedmuhammadanasmaududi-rag-chabot.hf.space || echo "Backend health check failed (non-blocking)"
 
       - name: Upload Build Artifact
         uses: actions/upload-pages-artifact@v3
