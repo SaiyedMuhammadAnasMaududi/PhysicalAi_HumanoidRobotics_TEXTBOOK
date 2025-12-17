@@ -18,6 +18,7 @@ function ChatInterfaceInternal({ backendUrl, streamingEndpoint, messageLimit, on
 
   useEffect(() => {
     let isMounted = true;
+    let chatComponent = null;
 
     // Dynamic import to avoid SSR issues
     import('./ChatContainer.jsx')
@@ -26,13 +27,8 @@ function ChatInterfaceInternal({ backendUrl, streamingEndpoint, messageLimit, on
           return;
         }
 
-        // Clear any existing content safely
-        while (chatContainerRef.current.firstChild) {
-          chatContainerRef.current.removeChild(chatContainerRef.current.firstChild);
-        }
-
         // Create the chat container with the specified configuration
-        const chatComponent = ChatContainer({
+        chatComponent = ChatContainer({
           backendUrl,
           streamingEndpoint,
           messageLimit,
@@ -59,18 +55,22 @@ function ChatInterfaceInternal({ backendUrl, streamingEndpoint, messageLimit, on
       isMounted = false;
 
       // Clean up chat instance
-      if (chatInstanceRef.current && chatInstanceRef.current.cleanup) {
-        try {
-          chatInstanceRef.current.cleanup();
-        } catch (e) {
-          console.error('Error cleaning up chat:', e);
+      if (chatInstanceRef.current) {
+        if (typeof chatInstanceRef.current.cleanup === 'function') {
+          try {
+            chatInstanceRef.current.cleanup();
+          } catch (e) {
+            console.error('Error cleaning up chat:', e);
+          }
         }
-      }
 
-      // Clear the container safely
-      if (chatContainerRef.current) {
-        while (chatContainerRef.current.firstChild) {
-          chatContainerRef.current.removeChild(chatContainerRef.current.firstChild);
+        // Remove the chat component from DOM
+        if (chatInstanceRef.current.parentNode) {
+          try {
+            chatInstanceRef.current.parentNode.removeChild(chatInstanceRef.current);
+          } catch (e) {
+            console.error('Error removing chat component:', e);
+          }
         }
       }
 
@@ -86,14 +86,18 @@ function ChatInterfaceInternal({ backendUrl, streamingEndpoint, messageLimit, on
 
   if (error) {
     return (
-      <div ref={chatContainerRef} className={combinedClassName} style={combinedStyle}>
+      <div className={combinedClassName} style={combinedStyle}>
         <div className="chat-error">Failed to load chat: {error}</div>
       </div>
     );
   }
 
   return (
-    <div ref={chatContainerRef} className={combinedClassName} style={combinedStyle}>
+    <div
+      ref={chatContainerRef}
+      className={combinedClassName}
+      style={combinedStyle}
+    >
       {!chatLoaded && <div className="chat-loading">Loading chat interface...</div>}
     </div>
   );

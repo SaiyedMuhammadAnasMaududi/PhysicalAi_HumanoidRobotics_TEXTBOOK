@@ -82,14 +82,24 @@ export function ChatContainer({
 
   // Update DOM elements based on current state
   function updateDOMFromState() {
-    // Update message list
+    // Update message list - use replaceChild to avoid removeChild errors
     const existingMessageList = messagesContainer.querySelector('.message-list');
-    if (existingMessageList && existingMessageList.parentNode) {
-      existingMessageList.parentNode.removeChild(existingMessageList);
-    }
-
     const newMessageList = createMessageList(state.messages);
-    messagesContainer.appendChild(newMessageList);
+
+    if (existingMessageList && existingMessageList.parentNode === messagesContainer) {
+      // Safely replace the existing message list
+      try {
+        messagesContainer.replaceChild(newMessageList, existingMessageList);
+      } catch (e) {
+        console.error('Error replacing message list:', e);
+        // Fallback: clear and append
+        messagesContainer.innerHTML = '';
+        messagesContainer.appendChild(newMessageList);
+      }
+    } else {
+      // No existing list, just append
+      messagesContainer.appendChild(newMessageList);
+    }
 
     // Update typing indicator visibility
     typingIndicatorContainer.style.display = state.streamingStatus ? 'block' : 'none';
@@ -99,7 +109,7 @@ export function ChatContainer({
     updateInputState(state.streamingStatus);
 
     // Update scroll position
-    if (state.streamingStatus || state.messages.length > (state.messages.length - 10)) {
+    if (state.streamingStatus || state.messages.length > 0) {
       // Scroll to bottom when new messages arrive or during streaming
       scrollManager.updateScrollPosition();
     }
