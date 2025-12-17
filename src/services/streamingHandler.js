@@ -51,12 +51,21 @@ function createStreamingConnection(url, requestBody, onMessageUpdate, onStatusCh
   let timeoutId = null;
   const config = getConfig();
 
+  // Set initial timeout before fetch
+  timeoutId = setTimeout(() => {
+    if (!isClosed) {
+      const error = formatError('Request timeout - no response received', 'request_timeout');
+      onError(error);
+      controller.abort();
+    }
+  }, config.TIMEOUT_MS);
+
   // Start the streaming process
   const streamPromise = fetch(url, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'Accept': 'text/event-stream',
+      'Accept': 'application/json, text/event-stream',
       'Cache-Control': 'no-cache',
     },
     body: JSON.stringify(requestBody),
@@ -79,8 +88,43 @@ function createStreamingConnection(url, requestBody, onMessageUpdate, onStatusCh
       return;
     }
 
-    // Check if the response is actually streaming
+    // Check content type - handle both streaming and regular JSON responses
     const contentType = response.headers.get('content-type');
+
+    // Handle regular JSON response (non-streaming)
+    if (contentType && contentType.includes('application/json')) {
+      try {
+        const jsonData = await response.json();
+
+        // Clear timeout
+        clearTimeout(timeoutId);
+
+        // Check if there's an error in the response
+        if (jsonData.error || (jsonData.response && jsonData.response.startsWith('Error'))) {
+          const errorMessage = jsonData.error || jsonData.response || 'Unknown error';
+          onError(formatError(errorMessage, 'backend_error'));
+          return;
+        }
+
+        // Send the complete response as a single chunk
+        if (jsonData.response) {
+          onMessageUpdate({
+            content: jsonData.response,
+            done: true
+          });
+          onStatusChange('complete');
+        } else {
+          onError(formatError('No response field in JSON', 'response_format'));
+        }
+        return;
+      } catch (parseError) {
+        const error = formatError('Failed to parse JSON response: ' + parseError.message, 'json_parse');
+        onError(error);
+        return;
+      }
+    }
+
+    // Check if the response is streaming format
     if (!contentType || !contentType.includes('text/event-stream')) {
       const error = formatError('Invalid content type for streaming response', 'streaming_response');
       onError(error);

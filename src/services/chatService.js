@@ -6,7 +6,7 @@
 // React components can override these using updateConfig()
 const DEFAULT_CONFIG = {
   BACKEND_URL: 'https://syedmuhammadanasmaududi-rag-chabot.hf.space',
-  STREAMING_ENDPOINT: '/api/chat/stream',
+  STREAMING_ENDPOINT: '/api/chat',
   MESSAGE_LIMIT: 100,
   TIMEOUT_MS: 30000,
   RETRY_ATTEMPTS: 3,
